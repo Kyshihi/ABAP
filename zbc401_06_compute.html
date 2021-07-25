@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=EUC-KR" />
+<title>ZBC401_06_COMPUTE</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC401_06_COMPUTE</h2>
+<h3> Description: Report ZBC401_06_COMPUTE</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;ZBC401_06_COMPUTE<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+REPORT zbc401_06_compute.<br />
+   </div>
+   <div class="codeComment">
+*<br />
+*PARAMETERS:<br />
+*PA_INT1&nbsp;TYPE&nbsp;I,<br />
+*PA_OP&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;1,<br />
+*PA_INT2&nbsp;TYPE&nbsp;I.<br />
+*<br />
+*DATA&nbsp;GV_RESULT&nbsp;TYPE&nbsp;P&nbsp;LENGTH&nbsp;16&nbsp;DECIMALS&nbsp;2.<br />
+*<br />
+*IF&nbsp;(&nbsp;PA_OP&nbsp;=&nbsp;'+'&nbsp;OR<br />
+*&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'-'&nbsp;OR<br />
+*&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'*'&nbsp;OR<br />
+*&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;PA_INT2&nbsp;&lt;&gt;&nbsp;0&nbsp;).<br />
+*<br />
+*&nbsp;CASE&nbsp;PA_OP.<br />
+*&nbsp;&nbsp;&nbsp;WHEN&nbsp;'+'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;+&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;'-'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;-&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;'*'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;*&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;'/'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;/&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDCASE.<br />
+*<br />
+*WRITE&nbsp;:&nbsp;'RESULT'(RES),&nbsp;GV_RESULT.<br />
+*<br />
+*ELSEIF&nbsp;PA_OP&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;PA_INT2&nbsp;=&nbsp;0.<br />
+*&nbsp;&nbsp;WRITE&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'(DBZ).<br />
+*<br />
+*&nbsp;&nbsp;ELSE.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'(IOP).<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+*PARAMETERS:<br />
+*PA_INT1&nbsp;TYPE&nbsp;I,<br />
+*PA_OP&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;1,<br />
+*PA_INT2&nbsp;TYPE&nbsp;I.<br />
+*<br />
+*DATA&nbsp;:&nbsp;GV_RESULT&nbsp;TYPE&nbsp;P&nbsp;LENGTH&nbsp;16&nbsp;DECIMALS&nbsp;2,<br />
+*C1&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;10.<br />
+*<br />
+*C1&nbsp;=&nbsp;'RESULT'.<br />
+*<br />
+*BREAK-POINT.<br />
+*<br />
+*IF&nbsp;(&nbsp;PA_OP&nbsp;=&nbsp;'+'&nbsp;OR<br />
+*&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'-'&nbsp;OR<br />
+*&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'*'&nbsp;OR<br />
+*&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;PA_INT2&nbsp;&lt;&gt;&nbsp;0&nbsp;).<br />
+*<br />
+*&nbsp;CASE&nbsp;PA_OP.<br />
+*&nbsp;&nbsp;&nbsp;WHEN&nbsp;'+'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;+&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;'-'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;-&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;'*'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;*&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;'/'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;/&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDCASE.<br />
+*<br />
+*WRITE:&nbsp;C1&nbsp;,&nbsp;GV_RESULT.<br />
+*<br />
+*ELSEIF&nbsp;PA_OP&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;PA_INT2&nbsp;=&nbsp;0.<br />
+*&nbsp;&nbsp;WRITE&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'(DBZ).<br />
+*<br />
+*&nbsp;&nbsp;ELSE.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'(IOP).<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+*"IF#&nbsp;####&nbsp;##&nbsp;###<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;PARAMETERS:<br />
+*PA_INT1&nbsp;TYPE&nbsp;I,<br />
+*PA_OP&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;2,<br />
+*PA_INT2&nbsp;TYPE&nbsp;I.<br />
+*<br />
+*DATA&nbsp;:&nbsp;GV_RESULT&nbsp;TYPE&nbsp;P&nbsp;LENGTH&nbsp;16&nbsp;DECIMALS&nbsp;2,<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R1&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;10.<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;R1&nbsp;=&nbsp;'RESULT'.<br />
+*<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;PA_OP&nbsp;=&nbsp;'+'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;+&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;PA_OP&nbsp;=&nbsp;'-'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;-&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;PA_OP&nbsp;=&nbsp;'*'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;*&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;(&nbsp;PA_OP&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;PA_INT2&nbsp;&lt;&gt;&nbsp;0&nbsp;).<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;/&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;(&nbsp;PA_OP&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;PA_INT2&nbsp;=&nbsp;0&nbsp;).<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;PA_OP&nbsp;=&nbsp;'**'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_RESULT&nbsp;=&nbsp;PA_INT1&nbsp;**&nbsp;PA_INT2.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;:&nbsp;R1,&nbsp;GV_RESULT.<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+"ELSEIF ### ##<br />
+PARAMETERS : pa_int1 TYPE i,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pa_op&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;2,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pa_int2&nbsp;TYPE&nbsp;i.<br />
+<br />
+<br />
+DATA : gv_result TYPE p LENGTH 16 DECIMALS 2,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;10,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;20,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;10.<br />
+<br />
+r1 = 'RESULT'.<br />
+<br />
+IF pa_op = '+' OR pa_op ='-' OR pa_op ='*' OR pa_op ='/' OR pa_op ='**'.<br />
+&nbsp;&nbsp;IF&nbsp;pa_op&nbsp;=&nbsp;'+'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;gv_result&nbsp;=&nbsp;pa_int1&nbsp;+&nbsp;pa_int2.<br />
+&nbsp;&nbsp;ELSEIF&nbsp;pa_op&nbsp;='-'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;gv_result&nbsp;=&nbsp;pa_int1&nbsp;-&nbsp;pa_int2.<br />
+&nbsp;&nbsp;ELSEIF&nbsp;pa_op&nbsp;=&nbsp;'*'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;gv_result&nbsp;=&nbsp;pa_int1&nbsp;*&nbsp;pa_int2.<br />
+&nbsp;&nbsp;ELSEIF&nbsp;pa_op&nbsp;=&nbsp;'/'&nbsp;AND&nbsp;pa_int2&nbsp;&gt;&lt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;gv_result&nbsp;=&nbsp;pa_int1&nbsp;/&nbsp;pa_int2.<br />
+&nbsp;&nbsp;ELSEIF&nbsp;pa_op&nbsp;=&nbsp;'**'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;gv_result&nbsp;=&nbsp;pa_int1&nbsp;**&nbsp;pa_int2.<br />
+&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;r2&nbsp;=&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;:&nbsp;r2.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ELSE .<br />
+&nbsp;&nbsp;r3&nbsp;=&nbsp;'ERROR'.<br />
+&nbsp;&nbsp;WRITE&nbsp;:&nbsp;r3.<br />
+ENDIF.<br />
+<br />
+IF r3 &lt;&gt; 'ERROR'.<br />
+&nbsp;&nbsp;IF&nbsp;r2&nbsp;&lt;&gt;&nbsp;'NO&nbsp;DIVISION&nbsp;BY&nbsp;ZERO!'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;:&nbsp;r1,&nbsp;gv_result.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ENDIF.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2021. Sap Release 754</td>
+   </tr>
+</table>
+</body>
+</html>
